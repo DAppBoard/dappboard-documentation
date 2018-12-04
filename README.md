@@ -8,7 +8,7 @@ How to install, run and hack [DAppBoard](http://dappboard.com).
 The DAppBoard project is a suite of open source tools used to capture and analyze Ethereum blockchain data. It is separated into 4 repositories:
 * [ETL](https://github.com/DAppBoard/dappboard-etl): The tools that are extracting and transforming the blockchain data to our database.
 * [Web](https://github.com/DAppBoard/dappboard-web): A backend and frontend based on SailsJS. This is what you see when you visit [dappboard.com](http://dappboard.com).
-* [environment](https://github.com/DAppBoard/dappboard-environment): Contains script and environment variable you will nedd to run DAppBoard ETL and Web.
+* [Environment](https://github.com/DAppBoard/dappboard-environment): Contains script and environment variable you will nedd to run DAppBoard ETL and Web.
 * [Documentation](https://github.com/DAppBoard/dappboard-documentation): What you are reading now, how to setup and run your own DAppBoard.
 
 ### B. Prerequisite
@@ -25,7 +25,7 @@ We are currently hosting our pipeline at [DigitalOcean](http://digitalocean.com)
 
 #### a. Common tools
 
-On a fresh environment clone the environment installation script and run it as an administrator. It will install all the tools needed to run the ETL and Web interface.
+On a fresh Ubuntu server clone the environment installation script and run it as an administrator. It will install all the tools needed to run the ETL and Web interface.
 
 ``cd ~ && git clone https://github.com/DAppBoard/dappboard-environment.git && cd dappboard-environment && sudo ./install_server.sh``
 
@@ -33,14 +33,17 @@ On a fresh environment clone the environment installation script and run it as a
 
 For installing the ETL, we just need to clone the repo and install NPM dependencies.
 
-``cd ~ && git clone https://github.com/DAppBoard/dappboard-etl.git && cd dappboard-etl/etl && node install``
+``cd ~ && git clone https://github.com/DAppBoard/dappboard-etl.git && cd dappboard-etl/etl && npm install``
 
-You will then need to create all the tables and indexes that we suggest. For this connect to your database and run the scripts located in the ```dappboard-etl/schemas/``` folder.
+You will then need to create all the tables and indexes. For this connect to your PostgreSQL database and run the SQL queries located in the ```dappboard-etl/schemas/tables/``` folder or [here](https://github.com/DAppBoard/dappboard-etl/tree/master/schemas/tables).
 
 #### c. Web
 
+Installing the web part is optionnal as it's only valuable if you want to replicate DAppBoard. We publish it for learning and transparency purpose.
 
+ ``cd ~ && git clone https://github.com/DAppBoard/dappboard-web.git && cd dappboard-web/ && npm install``
 
+### D. Running
 
 
 
