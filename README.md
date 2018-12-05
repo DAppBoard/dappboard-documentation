@@ -66,7 +66,7 @@ Once you filled the information, source it and add it to your general environmen
 
 For installing the ETL, we just need to clone the repo and install NPM dependencies.
 
-``cd ~ && git clone https://github.com/DAppBoard/dappboard-etl.git && cd dappboard-etl/etl && npm install``
+``cd ~ && cd dappboard-etl/etl && npm install``
 
 You will then need to create all the tables and indexes. For this connect to your PostgreSQL database and run the SQL queries located in the ```dappboard-etl/schemas/tables/``` folder or [here](https://github.com/DAppBoard/dappboard-etl/tree/master/schemas/tables).
 
@@ -74,7 +74,7 @@ You will then need to create all the tables and indexes. For this connect to you
 
 Installing the web part is optionnal as it's only valuable if you want to replicate DAppBoard. We publish it for learning and transparency purpose.
 
- ``cd ~ && git clone https://github.com/DAppBoard/dappboard-web.git && cd dappboard-web/ && npm install``
+ ``cd ~ && cd dappboard-web/ && npm install``
 
 ## 2. Running
 
