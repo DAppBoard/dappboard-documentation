@@ -80,9 +80,14 @@ Installing the web part is optionnal as it's only valuable if you want to replic
 
 ### A. ETL
 
-We use PM2 in order to run and monitor node script: it was installed with the server environment. In the etl folder run:
+We use PM2 in order to run and monitor node script: it was installed with the server environment. In the home folder run:
 
-```pm2 start ecosystem.config.js```
+```pm2 start etl.ecosystem.config.js```
+
+This will start all the ETL scripts:
+* **live** is responsible for getting new blocks and ingesting them.
+* **past** is responsible for going back in time for ingesting the blocks.
+* **scrape_tokens** is running every hour and get information about the tokens that emitted Transfer events.
 
 ### B. Web
 
