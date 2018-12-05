@@ -1,9 +1,20 @@
 # DAppBoard Documentation
 How to install, run and hack [DAppBoard](http://dappboard.com).
 
-## 1. Installation
+Table of content:
+  * [1. Introduction](#1-introduction)
+  * [2. Installation](#2-installation)
+    + [A. Prerequisite](#a-prerequisite)
+    + [B. Setup](#b-setup)
+      - [a. Common tools](#a-common-tools)
+      - [b. ETL and Database](#b-etl-and-database)
+      - [c. Web](#c-web)
+  * [2. Running](#2-running)
+    + [A. ETL](#a-etl)
+    + [B. Web](#b-web)
+  * [3. License and attribution](#3-license-and-attribution)
 
-### A. Introduction
+## 1. Introduction
 
 The DAppBoard project is a suite of open source tools used to capture and analyze Ethereum blockchain data. It is separated into 4 repositories:
 * [ETL](https://github.com/DAppBoard/dappboard-etl): The tools that are extracting and transforming the blockchain data to our database.
@@ -11,7 +22,9 @@ The DAppBoard project is a suite of open source tools used to capture and analyz
 * [Environment](https://github.com/DAppBoard/dappboard-environment): Contains script and environment variable you will nedd to run DAppBoard ETL and Web.
 * [Documentation](https://github.com/DAppBoard/dappboard-documentation): What you are reading now, how to setup and run your own DAppBoard.
 
-### B. Prerequisite
+## 2. Installation
+
+### A. Prerequisite
 
 Running DAppBoard requires few resources
 
@@ -21,13 +34,33 @@ Running DAppBoard requires few resources
 We are currently hosting our pipeline at [DigitalOcean](http://digitalocean.com) and would like to thanks them for their support.
 
 
-### C. Setup
+### B. Setup
 
 #### a. Common tools
 
 On a fresh Ubuntu server clone the environment installation script and run it as an administrator. It will install all the tools needed to run the ETL and Web interface.
 
 ``cd ~ && git clone https://github.com/DAppBoard/dappboard-environment.git && cd dappboard-environment && sudo ./install_server.sh``
+
+You will then need to fill the environment file, the sample one is available here ```dappboard-evnvironment/env_sample``` and you'll need to fill the following informations:
+
+```
+# Database connection informations
+export DAPPBOARD_PSQL_HOST=""
+export DAPPBOARD_PSQL_DB=""
+export DAPPBOARD_PSQL_USER=""
+export DAPPBOARD_PSQL_PASSWORD=""
+
+# The connection string for your RPC node or Infura
+export DAPPBOARD_NODE_URL=""
+
+# Only necessary for scripts that are fetching data from Etherscan (ABI/Sourcecode)
+export DAPPBOARD_ETHERSCAN_API=""
+```
+
+Once you filled the information, source it and add it to your general environment.
+
+```source env_sample && sudo cat env_sample >> /etc/environment```
 
 #### b. ETL and Database
 
@@ -43,11 +76,21 @@ Installing the web part is optionnal as it's only valuable if you want to replic
 
  ``cd ~ && git clone https://github.com/DAppBoard/dappboard-web.git && cd dappboard-web/ && npm install``
 
-### D. Running
+## 2. Running
 
+### A. ETL
 
+We use PM2 in order to run and monitor node script: it was installed with the server environment. In the etl folder run:
 
-## License and attribution
+```pm2 start ecosystem.config.js```
+
+### B. Web
+
+In the web folder, run:
+
+```sails lift```
+
+## 3. License and attribution
 
 Everything you see (sources, documentation) is published under the MIT License.
 
